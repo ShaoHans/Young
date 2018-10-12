@@ -5,7 +5,7 @@ using System.Text;
 using Young.Domain.Models;
 using Young.Domain.Repositories;
 
-namespace Young.Infrastructure.ImplRepositories
+namespace Young.Infrastructure.Repositories
 {
     public class Repository<T> : IRepository<T> where T :class, IAggregateRoot
     {

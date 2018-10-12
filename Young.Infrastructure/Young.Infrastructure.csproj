@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Young.Domain\Young.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="EntityConfigurations\" />
+  </ItemGroup>
+
 </Project>
