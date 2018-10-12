@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27924.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Young.Infrastructure", "Young.Infrastructure\Young.Infrastructure.csproj", "{61DF962E-0A07-43C0-8813-1747ACA12EDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Young.Infrastructure", "Young.Infrastructure\Young.Infrastructure.csproj", "{61DF962E-0A07-43C0-8813-1747ACA12EDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Young.Domain", "Young.Domain\Young.Domain.csproj", "{2535DECA-4D08-4945-A225-F70AE073D3C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Young.Domain", "Young.Domain\Young.Domain.csproj", "{2535DECA-4D08-4945-A225-F70AE073D3C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Young.Application", "Young.Application\Young.Application.csproj", "{6BD590F9-6990-4D68-A566-06EB19565781}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Young.Application", "Young.Application\Young.Application.csproj", "{6BD590F9-6990-4D68-A566-06EB19565781}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Young.Web", "Young.Web\Young.Web.csproj", "{92630961-0727-4C0F-A58D-7CBFF5DE04D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Young.Web", "Young.Web\Young.Web.csproj", "{92630961-0727-4C0F-A58D-7CBFF5DE04D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EventBus", "EventBus", "{883AA139-18F9-4B1E-AF03-06D065EC2729}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
