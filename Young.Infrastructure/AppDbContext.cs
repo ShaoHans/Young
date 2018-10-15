@@ -21,6 +21,8 @@ namespace Young.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // https://andrewlock.net/customising-asp-net-core-identity-ef-core-naming-conventions-for-postgresql/
+
             modelBuilder.Entity<Book>().ToTable("Book").HasKey(b => b.Id);
             modelBuilder.Entity<Book>().Property(b => b.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Book>().Property(b => b.Author).HasMaxLength(40).IsRequired();
