@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Young.Application;
-using Young.Application.Dtos;
+using Young.Application.ViewModels;
 using Young.Command.Commands.Book;
 
 namespace Young.Web.Controllers
@@ -13,15 +13,17 @@ namespace Young.Web.Controllers
     public class BookController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly IBookQuery _bookQuery;
 
-        public BookController(IMediator mediator)
+        public BookController(IMediator mediator,IBookQuery bookQuery)
         {
             _mediator = mediator;
+            _bookQuery = bookQuery;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(_bookQuery.GetAll());
         }
 
         public IActionResult Create()
@@ -30,7 +32,7 @@ namespace Young.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(BookAddDto dto)
+        public async Task<IActionResult> Create(BookViewModel dto)
         {
             if(!ModelState.IsValid)
             {

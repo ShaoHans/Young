@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Young.Application.Dtos
+namespace Young.Application.ViewModels
 {
-    public class BookAddDto
+    public class BookViewModel
     {
         public string Name { get; set; }
 

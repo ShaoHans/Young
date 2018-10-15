@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Young.Application.Dtos;
+using Young.Application.ViewModels;
 
 namespace Young.Application
 {
-    public interface IBookService
+    public interface IBookQuery
     {
-        bool AddBook(BookAddDto dto);
+        List<BookViewModel> GetAll();
     }
 }

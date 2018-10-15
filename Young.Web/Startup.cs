@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Young.Application;
+using Young.Application.Impl;
 using Young.Domain.Models;
 using Young.Domain.Repositories;
 using Young.Infrastructure;
@@ -49,7 +51,7 @@ namespace Young.Web
             services.AddScoped<IUnitOfWork, EfCoreUnitOfWork>();
             services.AddTransient(typeof(IRepository<>), typeof(EfCoreRepositoryBase<>));
             services.AddMediatR(typeof(Young.Command.Commands.Book.AddBookCommandHandler).GetTypeInfo().Assembly);
-
+            services.AddTransient(typeof(IBookQuery), sp => { return new BookQuery(Configuration.GetConnectionString("Default")); });
             // Add Autofac
             //var containerBuilder = new ContainerBuilder();
             //containerBuilder.Populate(services);
