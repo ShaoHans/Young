@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Young.Application;
 using Young.Application.Dtos;
+using Young.Command.Commands.Book;
 
 namespace Young.Web.Controllers
 {
     public class BookController : Controller
     {
-        private readonly IBookService _bookService;
+        private readonly IMediator _mediator;
 
-        public BookController(IBookService bookService)
+        public BookController(IMediator mediator)
         {
-            _bookService = bookService;
+            _mediator = mediator;
         }
 
         public IActionResult Index()
@@ -28,17 +30,17 @@ namespace Young.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(BookAddDto dto)
+        public async Task<IActionResult> Create(BookAddDto dto)
         {
             if(!ModelState.IsValid)
             {
                 return View();
             }
 
-            var result = _bookService.AddBook(dto);
+            var result = await _mediator.Send(new AddBookCommand(dto.Name, dto.Author, dto.Price, DateTime.Now));
             if(result)
             {
-                return RedirectToAction("index");
+                RedirectToAction("index");
             }
             return View();
         }

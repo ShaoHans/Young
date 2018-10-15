@@ -5,13 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.0" />
+    <PackageReference Include="MediatR" Version="5.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Young.Application\Young.Application.csproj" />
+    <ProjectReference Include="..\Young.Command\Young.Command.csproj" />
+    <ProjectReference Include="..\Young.Domain\Young.Domain.csproj" />
     <ProjectReference Include="..\Young.Infrastructure\Young.Infrastructure.csproj" />
+    <ProjectReference Include="..\Young.Query\Young.Query.csproj" />
   </ItemGroup>
 
 </Project>

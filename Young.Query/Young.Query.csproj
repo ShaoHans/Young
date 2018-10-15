@@ -2,14 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>Young.Query</AssemblyName>
+    <RootNamespace>Young.Query</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Events\" />
+    <ProjectReference Include="..\Young.Domain\Young.Domain.csproj" />
   </ItemGroup>
 
 </Project>
