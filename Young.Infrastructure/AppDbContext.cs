@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Young.Domain.Models;
+using Young.Infrastructure.EntityConfigurations;
 
 namespace Young.Infrastructure
 {
@@ -21,20 +22,50 @@ namespace Young.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // https://andrewlock.net/customising-asp-net-core-identity-ef-core-naming-conventions-for-postgresql/
+            modelBuilder.ApplyConfiguration(new BookConfiguration());
+            modelBuilder.ApplyConfiguration(new ReaderConfiguration());
+            modelBuilder.ApplyConfiguration(new BorrowRecordConfiguration());
 
-            modelBuilder.Entity<Book>().ToTable("Book").HasKey(b => b.Id);
-            modelBuilder.Entity<Book>().Property(b => b.Id).ValueGeneratedOnAdd();
-            modelBuilder.Entity<Book>().Property(b => b.Author).HasMaxLength(40).IsRequired();
-            modelBuilder.Entity<Book>().Property(b => b.Price).IsRequired();
-
-            modelBuilder.Entity<Reader>().ToTable("Reader").HasKey(r => r.Id);
-            modelBuilder.Entity<Reader>().Property(b => b.Id).ValueGeneratedOnAdd();
-
-            modelBuilder.Entity<BorrowRecord>().ToTable("BorrowRecord").HasKey(b => b.Id);
-            modelBuilder.Entity<BorrowRecord>().Property(b => b.Id).ValueGeneratedOnAdd();
+            DatabaseMeteDataReName(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        /// <summary>
+        /// 如果是使用PostgreSql，则使用snake_case命名法
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        private void DatabaseMeteDataReName(ModelBuilder modelBuilder)
+        {
+            // 参考文章
+            // https://andrewlock.net/customising-asp-net-core-identity-ef-core-naming-conventions-for-postgresql/
+
+            foreach (var entity in modelBuilder.Model.GetEntityTypes())
+            {
+                // Replace table names
+                entity.Relational().TableName = entity.Relational().TableName.ToSnakeCase();
+
+                // Replace column names            
+                foreach (var property in entity.GetProperties())
+                {
+                    property.Relational().ColumnName = property.Name.ToSnakeCase();
+                }
+
+                foreach (var key in entity.GetKeys())
+                {
+                    key.Relational().Name = key.Relational().Name.ToSnakeCase();
+                }
+
+                foreach (var key in entity.GetForeignKeys())
+                {
+                    key.Relational().Name = key.Relational().Name.ToSnakeCase();
+                }
+
+                foreach (var index in entity.GetIndexes())
+                {
+                    index.Relational().Name = index.Relational().Name.ToSnakeCase();
+                }
+            }
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Young.Web.Controllers
             var result = await _mediator.Send(new AddBookCommand(dto.Name, dto.Author, dto.Price, DateTime.Now));
             if(result)
             {
-                RedirectToAction("index");
+                return RedirectToAction("index");
             }
             return View();
         }
