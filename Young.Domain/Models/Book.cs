@@ -11,6 +11,8 @@ namespace Young.Domain.Models
 
         public string Name { get; set; }
 
+        public Guid TestGuid { get; set; }
+
         public string Author { get; set; }
 
         public decimal Price { get; set; }

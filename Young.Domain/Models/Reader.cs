@@ -12,6 +12,10 @@ namespace Young.Domain.Models
 
         public string Email { get; set; }
 
+        public Address Local { get; set; }
+
+        public Address Nation { get; set; }
+
         public List<BorrowRecord> BorrowRecords { get; set; }
     }
 }
